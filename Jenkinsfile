@@ -4,11 +4,14 @@ pipeline{
             label 'maven'
         }
     }
+    environment{
+        PATH = '/opt/apache-maven-3.9.4/bin:$PATH'
+    }
     stages{
-        stage('clone'){
+        stage('Build'){
             steps{
-               git branch: 'main', url: 'https://github.com/kulveer16/tweet-trend-new-jenkins-prjct.git'
+                sh 'mvn clean deploy'
             }
-        }
+            
     }
 }
